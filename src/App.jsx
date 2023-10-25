@@ -30,8 +30,8 @@ const App = () => {
 
   return (
     <Layout className="layoutMain">
-      <Header style={headerStyle}>Health Declaration App</Header>
-      <Content style={contentStyle}>
+      <Header className='layoutHeader'>Health Declaration App</Header>
+      <Content>
 
         
         <Row className="contentMain">
@@ -50,7 +50,7 @@ const App = () => {
           </Col>
         </Row>
       </Content>
-      <Footer style={footerStyle}>Contact the developer</Footer>
+      <Footer className="layoutFooter" >Contact the developer</Footer>
     </Layout>
   );
 }
@@ -58,13 +58,8 @@ const App = () => {
 
 export default App;
 
-const headerStyle = {
-  backgroundColor: '#7dbcea',
-};
-const contentStyle = {
 
-  backgroundColor: '#108ee9',
-};
+
 const footerStyle = {
   backgroundColor: '#7dbcea',
 };

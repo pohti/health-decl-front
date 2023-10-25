@@ -1,15 +1,22 @@
+:root {
+    --primary-bg-color: rgb(6, 93, 99);
+    --primary-font-color: #fff
+}
+
 .layoutMain {
     min-height: 100vh;
     text-align: center;
 }
 
-.ant-layout-header {
+.layoutHeader {
     font-size: 30px;
     min-height: 50px;
     max-height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--primary-font-color);
+    background-color: var(--primary-bg-color);
 }
 
 .contentMain {
@@ -20,4 +27,9 @@
     border-right-style: solid;
     border-right-width: 0.8px;
     border-right-color: #8382829d
+}
+
+.layoutFooter {
+    color: var(--primary-font-color);
+    background-color: var(--primary-bg-color);
 }
