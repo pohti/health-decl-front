@@ -21,7 +21,7 @@ export const getUserHealthInfo = async (queryParams) => {
         })
         const data = await response.json()
         console.log('data', data)
-        return data || []
+        return data
     } catch (error){
         console.error(error)
     } 
