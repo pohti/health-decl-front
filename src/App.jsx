@@ -16,10 +16,17 @@ const App = () => {
   const [isFirstVisit, setIsFirstVisit] = useState(true)
 
   const searchUserData = async () => {
+    // validate
     if (!fullname && !nric) {
       AntdMessage.error('Please provide either full name or NRIC/FIN no!')
       return
     }
+    if (nric && nric.length !== 9) {
+      AntdMessage.error('Invalid NRIC format!')
+      return
+    }
+
+
     try {
       setIsLoading(true)
       setIsFirstVisit(false)
@@ -67,9 +74,3 @@ const App = () => {
 
 
 export default App;
-
-
-
-const footerStyle = {
-  backgroundColor: '#7dbcea',
-};

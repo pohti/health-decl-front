@@ -1,40 +1,63 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { 
     Empty,
     Skeleton, 
-    Descriptions,
-
+    Table
 } from 'antd'
+import { InfoCircleOutlined } from '@ant-design/icons';
 import './UserHealthDataDisplay.css'
 
+const { Column, ColumnGroup } = Table 
 
-const FirstVisitContent = () => (
-    <div>
-        Search for user health declaration data by providing fullname or NRIC/FIN.
-    </div>
-)
 
 
 const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
 
-    const UserDataDisplay = () => {
-        return userData.healthDeclarations.map(currentData => {
-            const { temperature, symptons, contactWithin14Days, createdDateTime, _id } = currentData
-            return (
-                <li key={_id}>Temperature: {temperature} | contactWithin14Days: {contactWithin14Days}</li>
-            )
-        })
+    const FirstVisitContent = () => (
+        <div style={{ 
+            fontSize: '25px', 
+            lineHeight: '45px',
+            paddingTop: '45px'
+        }}>
+            <InfoCircleOutlined /> {" "}
+            Search for user health declaration data <br/>
+            by providing fullname or NRIC/FIN.
+        </div>
+    )
+
+    const UserDataTable = () => {
+        console.log('healthDeclarations', userData.healthDeclarations)
+        // return <div>Table here</div>
+        return <Table dataSource={userData.healthDeclarations}>
+            <Column title="Created At (SG Time)" dataIndex="createdDateTime" key="createdDateTime" 
+                render={createdDateTime => ISOToSingaporeTime(createdDateTime)}
+            />
+            <Column title="Temperature, °C" dataIndex="temperature" key="temperature" />
+    
+            <ColumnGroup title="Symptons">
+                <Column title="Cough" dataIndex="symptons" key="createdDateTime" render={({cough}) => cough ? 'Yes' : 'No'}/>
+                <Column title="Smell and Taste Impairment" dataIndex="symptons" key="createdDateTime" render={({smellAndTasteImpairment}) => smellAndTasteImpairment ? 'Yes' : 'No'}/>
+                <Column title="Fever" dataIndex="symptons" key="createdDateTime" render={({fever}) => fever ? 'Yes' : 'No'}/>
+                <Column title="Breathing Difficulties" dataIndex="symptons" key="createdDateTime" render={({breathingDifficulties}) => breathingDifficulties ? 'Yes' : 'No'}/>
+                <Column title="Body Aches" dataIndex="symptons" key="createdDateTime" render={({bodyAches}) => bodyAches ? 'Yes' : 'No'}/>
+                <Column title="Head Aches" dataIndex="symptons" key="createdDateTime" render={({headAches}) => headAches ? 'Yes' : 'No'}/>
+                <Column title="Fatigue" dataIndex="symptons" key="createdDateTime" render={({fatigue}) => fatigue ? 'Yes' : 'No'}/>
+                <Column title="Sore Throat" dataIndex="symptons" key="createdDateTime" render={({soreThroat}) => soreThroat ? 'Yes' : 'No'}/>
+                <Column title="Diarrhea" dataIndex="symptons" key="createdDateTime" render={({diarrhea}) => diarrhea ? 'Yes' : 'No'}/>
+                <Column title="Runny Nose" dataIndex="symptons" key="createdDateTime" render={({runnyNose}) => runnyNose ? 'Yes' : 'No'}/>
+            </ColumnGroup>
+    
+            <Column title="Contact Within 14 Days" dataIndex="contactWithin14Days" key="contactWithin14Days" render={(contactWithin14Days) => contactWithin14Days ? 'Yes' : 'No'}/>
+        </Table>
     }
+    
 
     const DynamicHealthDataContent = () => {
-        console.log('isLoading', isLoading)
-        console.log('isFirstVisit', isFirstVisit)
-        console.log('userData', userData)
         if (isLoading) return <Skeleton />
         if (isFirstVisit) return <FirstVisitContent/>
         else {
             return ( userData ? 
-                    <UserDataDisplay /> : 
+                    <UserDataTable/> : 
                     <Empty description="No health declaration data found. Begin submitting by filling in the form on the left side." /> )
         }
     }
@@ -47,3 +70,18 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
 }
 
 export default UserHealthDataDisplay
+
+
+
+const ISOToSingaporeTime = (isoDatetimeString) => {
+    // Parse the ISO datetime string into a JavaScript Date object
+    const utcDate = new Date(isoDatetimeString);
+
+    // Convert to Singapore time (UTC+8)
+    const singaporeTime = new Date(utcDate.getTime() + (utcDate.getTimezoneOffset() * 60000) + (8 * 60 * 60 * 1000));
+
+    // Format the date and time in Singapore time
+    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const singaporeTimeString = singaporeTime.toLocaleString('en-SG', options);
+    return singaporeTimeString
+}

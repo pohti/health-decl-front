@@ -13,15 +13,16 @@
     min-height: 50px;
     max-height: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     color: var(--primary-font-color);
     background-color: var(--primary-bg-color);
 }
 
 .contentMain {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     min-height: 81vh;
+    color: rgb(14, 14, 14);
 }
 
 .userInputCol {

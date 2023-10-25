@@ -19,13 +19,24 @@ const ParticularsInput = (props) => {
 
     return (
         <Row className='particulars-input-div' gutter={[8, 8]}>
-            <Col sm={24} md={10}>
+            <Col sm={24} md={12}>
                 <label>Full Name</label>
-                <Input placeholder="John Smith" onChange={handleFullnameChange} value={fullname} allowClear/>
+                <Input 
+                    style={{ maxWidth: '200px' }}
+                    placeholder="Alice Tan" 
+                    onChange={handleFullnameChange} 
+                    value={fullname} allowClear
+                />
             </Col>
-            <Col sm={24} md={10}>
+            <Col sm={24} md={8}>
                 <label>NRIC</label>
-                <Input placeholder="S1234567M" onChange={handleNRICChange} value={nric} allowClear/>
+                <Input 
+                    style={{ maxWidth: '180px' }}
+                    placeholder="S1234567M" 
+                    onChange={handleNRICChange} 
+                    value={nric} 
+                    allowClear
+                />
             </Col>
 
             <Col sm={24} md={4}>
