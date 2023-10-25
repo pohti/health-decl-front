@@ -17,12 +17,11 @@ export const getUserHealthInfo = async (queryParams) => {
 
     try {
         const response = await fetch(apiUrlWithParams, {
-            // mode: 'cors',
             headers,
         })
         const data = await response.json()
         console.log('data', data)
-        return data
+        return data || []
     } catch (error){
         console.error(error)
     } 

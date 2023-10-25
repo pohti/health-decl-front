@@ -1,0 +1,13 @@
+.layout-main {
+    min-height: 100vh;
+    text-align: center;
+}
+
+.ant-layout-header {
+    font-size: 30px;
+    min-height: 20vh;
+    max-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
