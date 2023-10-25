@@ -1,7 +1,9 @@
 import './App.css';
 import { useState } from 'react'
-import { Layout } from 'antd'
+import { Layout, Col, Row } from 'antd'
 import ParticularsInput from './components/ParticularsInput';
+import UserHealthDataForm from './components/UserHealthDataForm';
+import UserHealthDataDisplay from './components/UserHealthDataDisplay';
 import { getUserHealthInfo } from './api/api';
 
 const { Header, Content, Footer } = Layout
@@ -27,22 +29,32 @@ const App = () => {
   }
 
   return (
-    <Layout className="layout-main">
+    <Layout className="layoutMain">
       <Header style={headerStyle}>Health Declaration App</Header>
       <Content style={contentStyle}>
-        <ParticularsInput 
-          fullname={fullname} setFullname={setFullname}
-          nric={nric} setNRIC={setNRIC}
-          isLoading={isLoading}
-          searchUserData={searchUserData}
-        />
+
+        
+        <Row className="contentMain">
+          <Col span={10} className="userInputCol">
+            <ParticularsInput 
+              fullname={fullname} setFullname={setFullname}
+              nric={nric} setNRIC={setNRIC}
+              isLoading={isLoading}
+              searchUserData={searchUserData}
+            />
+            <UserHealthDataForm/>
+          </Col>
+
+          <Col span={14} className="dataDisplayCol">
+            <UserHealthDataDisplay/>
+          </Col>
+        </Row>
       </Content>
       <Footer style={footerStyle}>Contact the developer</Footer>
     </Layout>
   );
 }
 
-// getUserHealthInfo({ nric: 'S1234567M' })
 
 export default App;
 
