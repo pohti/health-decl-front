@@ -1,6 +1,7 @@
 :root {
-    --primary-bg-color: rgb(6, 93, 99);
-    --primary-font-color: #fff
+    --primary-bg-color: rgba(1, 77, 148, 0.925);
+    --primary-font-color: #fff;
+    --secondary-bg-color: rgba(235, 235, 235, 0.849);
 }
 
 .layoutMain {
@@ -20,8 +21,9 @@
 }
 
 .layoutContent {
-    padding: 15px 50px;
-    background-color: rgb(235, 235, 235);
+    /* padding: 15px 50px; */
+    padding: 15px;
+    background-color: var(--secondary-bg-color);
 }
 
 .layoutFooter {

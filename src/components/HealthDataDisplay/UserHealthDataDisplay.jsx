@@ -32,7 +32,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
         return <Row align="middle">
             <Col span={12}>
                 <Row justify="start" style={{ fontSize: "16px" }}>
-                    <span><b>Fullname:</b> {" "} {userData.fullname}</span>
+                    <span><b>Full Name:</b> {" "} {userData.fullname}</span>
                     <Divider type="vertical" />
                     <span><b>Phone:</b> {" "} {userData.phone || "NA"}</span>
                 </Row>
@@ -40,7 +40,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
             <Col span={12}>
                 <Row justify="end">
 
-                    <Button><DownloadOutlined /> {" "} Export To CSV</Button>
+                    <Button><DownloadOutlined /> {" "} Download CSV</Button>
                 </Row>
             </Col>
         </Row>

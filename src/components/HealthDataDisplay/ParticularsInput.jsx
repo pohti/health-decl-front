@@ -1,4 +1,5 @@
 import { Input, Button, Row, Col } from 'antd'
+import { SearchOutlined } from '@ant-design/icons';
 import './ParticularsInput.css'
 
 const ParticularsInput = (props) => {
@@ -18,7 +19,6 @@ const ParticularsInput = (props) => {
     }
 
     return (
-
         <Row className='particularsInputRow' gutter={[12, 8]}
             justify="start" align="middle" >
             <Col>
@@ -42,7 +42,10 @@ const ParticularsInput = (props) => {
             </Col>
 
             <Col>
-                <Button loading={isLoading} onClick={searchUserData}>Search</Button>
+                <Button loading={isLoading} onClick={searchUserData}>
+                    <SearchOutlined /> {" "}
+                    Search
+                </Button>
             </Col>
         </Row>
     )
