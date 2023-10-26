@@ -19,16 +19,9 @@
     background-color: var(--primary-bg-color);
 }
 
-.contentMain {
-    /* border: 1px solid red; */
-    min-height: 81vh;
-    color: rgb(14, 14, 14);
-}
-
-.userInputCol {
-    border-right-style: solid;
-    border-right-width: 0.8px;
-    border-right-color: #8382829d
+.layoutContent {
+    padding: 15px 50px;
+    background-color: rgb(235, 235, 235);
 }
 
 .layoutFooter {

@@ -1,5 +1,5 @@
 
-const BASE_URL = `https://052bs9gz53.execute-api.ap-southeast-1.amazonaws.com/dev`
+const BASE_URL = `https://sm7tgtc38h.execute-api.ap-southeast-1.amazonaws.com/dev`
 
 const headers = {
     "Content-Type": "application/json",

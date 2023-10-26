@@ -1,6 +1,10 @@
 import './App.css';
 import { useState } from 'react'
-import { Layout, Col, Row, message as AntdMessage } from 'antd'
+import { 
+  Layout,
+  message as AntdMessage,
+  Tabs
+} from 'antd'
 import ParticularsInput from './components/ParticularsInput';
 import UserHealthDataForm from './components/UserHealthDataForm';
 import UserHealthDataDisplay from './components/UserHealthDataDisplay';
@@ -14,6 +18,12 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState(null)
   const [isFirstVisit, setIsFirstVisit] = useState(true)
+
+
+
+  const handleTabChange = (key) => {
+    console.log(key);
+  };
 
   const searchUserData = async () => {
     // validate
@@ -41,31 +51,44 @@ const App = () => {
     }
   }
 
-  return (
-    <Layout className="layoutMain">
-      <Header className='layoutHeader'>Health Declaration App</Header>
-      <Content>
-
-        
-        <Row className="contentMain">
-          <Col span={10} className="userInputCol">
+  const tabItems = [
+    {
+      key: '1',
+      label: 'Search User Data',
+      children: (
+        <div>
             <ParticularsInput 
               fullname={fullname} setFullname={setFullname}
               nric={nric} setNRIC={setNRIC}
               isLoading={isLoading}
               searchUserData={searchUserData}
             />
-            <UserHealthDataForm/>
-          </Col>
-
-          <Col span={14} className="dataDisplayCol">
             <UserHealthDataDisplay 
               isFirstVisit={isFirstVisit} 
               userData={userData} 
               isLoading={isLoading}
             />
-          </Col>
-        </Row>
+        </div>
+      )
+    },
+    {
+      key: '2',
+      label: 'Health Declaration Form',
+      children: <UserHealthDataForm/>
+    }
+  ]
+
+  return (
+    <Layout className="layoutMain">
+      <Header className='layoutHeader'>Health Declaration App</Header>
+      <Content className='layoutContent'>
+        <Tabs 
+          type="card"
+          size="large"
+          defaultActiveKey='1' 
+          items={tabItems} 
+          onChange={handleTabChange}
+        />
       </Content>
       <Footer className="layoutFooter" >Contact the developer</Footer>
     </Layout>

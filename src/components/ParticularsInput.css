@@ -1,4 +1,4 @@
-.particulars-input-div {
+.particularsInputRow {
     /* max-width: 600px; */
     /* display: flex;
     gap: 10px;
@@ -16,7 +16,3 @@
     align-items: center;
     gap: 10px;
 }
-
-/* .particulars-input-div > .ant-col > span {
-    max-width: 160px;
-} */

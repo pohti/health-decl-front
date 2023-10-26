@@ -2,7 +2,10 @@
 import { 
     Empty,
     Skeleton, 
-    Table
+    Table,
+    Button,
+    Divider,
+    Row, Col,
 } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons';
 import './UserHealthDataDisplay.css'
@@ -25,30 +28,53 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
         </div>
     )
 
+    const UserInfoBar = () => {
+        return <Row align="middle">
+            <Col span={12}>
+                <Row justify="start" style={{ fontSize: "16px" }}>
+                    <span><b>Fullname:</b> {" "} {userData.fullname}</span>
+                    <Divider type="vertical" />
+                    <span><b>Phone:</b> {" "} {userData.phone || "NA"}</span>
+                </Row>
+            </Col>
+            <Col span={12}>
+                <Row justify="end">
+                    <Button>Export To CSV</Button>
+                </Row>
+            </Col>
+        </Row>
+
+    }
+
     const UserDataTable = () => {
         console.log('healthDeclarations', userData.healthDeclarations)
         // return <div>Table here</div>
-        return <Table dataSource={userData.healthDeclarations}>
-            <Column title="Created At (SG Time)" dataIndex="createdDateTime" key="createdDateTime" 
-                render={createdDateTime => ISOToSingaporeTime(createdDateTime)}
-            />
-            <Column title="Temperature, °C" dataIndex="temperature" key="temperature" />
-    
-            <ColumnGroup title="Symptons">
-                <Column title="Cough" dataIndex="symptons" key="createdDateTime" render={({cough}) => cough ? 'Yes' : 'No'}/>
-                <Column title="Smell and Taste Impairment" dataIndex="symptons" key="createdDateTime" render={({smellAndTasteImpairment}) => smellAndTasteImpairment ? 'Yes' : 'No'}/>
-                <Column title="Fever" dataIndex="symptons" key="createdDateTime" render={({fever}) => fever ? 'Yes' : 'No'}/>
-                <Column title="Breathing Difficulties" dataIndex="symptons" key="createdDateTime" render={({breathingDifficulties}) => breathingDifficulties ? 'Yes' : 'No'}/>
-                <Column title="Body Aches" dataIndex="symptons" key="createdDateTime" render={({bodyAches}) => bodyAches ? 'Yes' : 'No'}/>
-                <Column title="Head Aches" dataIndex="symptons" key="createdDateTime" render={({headAches}) => headAches ? 'Yes' : 'No'}/>
-                <Column title="Fatigue" dataIndex="symptons" key="createdDateTime" render={({fatigue}) => fatigue ? 'Yes' : 'No'}/>
-                <Column title="Sore Throat" dataIndex="symptons" key="createdDateTime" render={({soreThroat}) => soreThroat ? 'Yes' : 'No'}/>
-                <Column title="Diarrhea" dataIndex="symptons" key="createdDateTime" render={({diarrhea}) => diarrhea ? 'Yes' : 'No'}/>
-                <Column title="Runny Nose" dataIndex="symptons" key="createdDateTime" render={({runnyNose}) => runnyNose ? 'Yes' : 'No'}/>
-            </ColumnGroup>
-    
-            <Column title="Contact Within 14 Days" dataIndex="contactWithin14Days" key="contactWithin14Days" render={(contactWithin14Days) => contactWithin14Days ? 'Yes' : 'No'}/>
-        </Table>
+        return (
+            <div>
+                
+                <Table dataSource={userData.healthDeclarations} title={() => <UserInfoBar/>} >
+                    <Column title={<span>Created At <br/>(SG Time)</span>} dataIndex="createdDateTime" key="createdDateTime" 
+                        render={createdDateTime => ISOToSingaporeTime(createdDateTime)}
+                    />
+                    <Column title="Temperature, °C" dataIndex="temperature" key="temperature" />
+            
+                    <ColumnGroup title="Symptons">
+                        <Column title="Cough" dataIndex="symptons" key="createdDateTime" render={({cough}) => cough ? 'Yes' : 'No'}/>
+                        <Column title="Smell and Taste Impairment" dataIndex="symptons" key="createdDateTime" render={({smellAndTasteImpairment}) => smellAndTasteImpairment ? 'Yes' : 'No'}/>
+                        <Column title="Fever" dataIndex="symptons" key="createdDateTime" render={({fever}) => fever ? 'Yes' : 'No'}/>
+                        <Column title="Breathing Difficulties" dataIndex="symptons" key="createdDateTime" render={({breathingDifficulties}) => breathingDifficulties ? 'Yes' : 'No'}/>
+                        <Column title="Body Aches" dataIndex="symptons" key="createdDateTime" render={({bodyAches}) => bodyAches ? 'Yes' : 'No'}/>
+                        <Column title="Head Aches" dataIndex="symptons" key="createdDateTime" render={({headAches}) => headAches ? 'Yes' : 'No'}/>
+                        <Column title="Fatigue" dataIndex="symptons" key="createdDateTime" render={({fatigue}) => fatigue ? 'Yes' : 'No'}/>
+                        <Column title="Sore Throat" dataIndex="symptons" key="createdDateTime" render={({soreThroat}) => soreThroat ? 'Yes' : 'No'}/>
+                        <Column title="Diarrhea" dataIndex="symptons" key="createdDateTime" render={({diarrhea}) => diarrhea ? 'Yes' : 'No'}/>
+                        <Column title="Runny Nose" dataIndex="symptons" key="createdDateTime" render={({runnyNose}) => runnyNose ? 'Yes' : 'No'}/>
+                    </ColumnGroup>
+            
+                    <Column title="Contact Within 14 Days" dataIndex="contactWithin14Days" key="contactWithin14Days" render={(contactWithin14Days) => contactWithin14Days ? 'Yes' : 'No'}/>
+                </Table>
+            </div>
+        )
     }
     
 
@@ -70,8 +96,6 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
 }
 
 export default UserHealthDataDisplay
-
-
 
 const ISOToSingaporeTime = (isoDatetimeString) => {
     // Parse the ISO datetime string into a JavaScript Date object

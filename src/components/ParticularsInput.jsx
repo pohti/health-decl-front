@@ -18,9 +18,11 @@ const ParticularsInput = (props) => {
     }
 
     return (
-        <Row className='particulars-input-div' gutter={[8, 8]}>
-            <Col sm={24} md={12}>
-                <label>Full Name</label>
+
+        <Row className='particularsInputRow' gutter={[12, 8]}
+            justify="start" align="middle" >
+            <Col>
+                <label>Full Name</label> {" "}
                 <Input 
                     style={{ maxWidth: '200px' }}
                     placeholder="Alice Tan" 
@@ -28,8 +30,8 @@ const ParticularsInput = (props) => {
                     value={fullname} allowClear
                 />
             </Col>
-            <Col sm={24} md={8}>
-                <label>NRIC</label>
+            <Col>
+                <label>NRIC</label> {" "}
                 <Input 
                     style={{ maxWidth: '180px' }}
                     placeholder="S1234567M" 
@@ -39,7 +41,7 @@ const ParticularsInput = (props) => {
                 />
             </Col>
 
-            <Col sm={24} md={4}>
+            <Col>
                 <Button loading={isLoading} onClick={searchUserData}>Search</Button>
             </Col>
         </Row>
