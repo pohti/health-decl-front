@@ -6,28 +6,3 @@
     /* border: 1px solid blue; */
     height: 100%;
 }
-
-/* .userInfoBar {
-    display: flex;
-    align-items: center;
-    gap: 15px 10px;
-    border: 1px solid blue;
-}
-
-.userInfoDiv {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 15px 10px;
-    font-size: 18px;
-    border: 1px solid green;
-}
-
-.exportButtonDiv {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 15px 10px;
-    font-size: 18px;
-    border: 1px solid red;
-} */

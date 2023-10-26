@@ -5,6 +5,7 @@ import {
   message as AntdMessage,
   Tabs
 } from 'antd'
+import { FileSearchOutlined, FormOutlined } from '@ant-design/icons';
 import ParticularsInput from './components/ParticularsInput';
 import UserHealthDataForm from './components/UserHealthDataForm';
 import UserHealthDataDisplay from './components/UserHealthDataDisplay';
@@ -54,7 +55,7 @@ const App = () => {
   const tabItems = [
     {
       key: '1',
-      label: 'Search User Data',
+      label: <span><FileSearchOutlined /> {" "} Search User Data</span>,
       children: (
         <div>
             <ParticularsInput 
@@ -73,7 +74,7 @@ const App = () => {
     },
     {
       key: '2',
-      label: 'Health Declaration Form',
+      label: <span><FormOutlined /> {" "} Health Declaration Form</span>,
       children: <UserHealthDataForm/>
     }
   ]

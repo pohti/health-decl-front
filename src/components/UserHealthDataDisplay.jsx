@@ -7,7 +7,7 @@ import {
     Divider,
     Row, Col,
 } from 'antd'
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, DownloadOutlined } from '@ant-design/icons';
 import './UserHealthDataDisplay.css'
 
 const { Column, ColumnGroup } = Table 
@@ -39,7 +39,8 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
             </Col>
             <Col span={12}>
                 <Row justify="end">
-                    <Button>Export To CSV</Button>
+
+                    <Button><DownloadOutlined /> {" "} Export To CSV</Button>
                 </Row>
             </Col>
         </Row>
@@ -52,7 +53,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
         return (
             <div>
                 
-                <Table dataSource={userData.healthDeclarations} title={() => <UserInfoBar/>} >
+                <Table dataSource={userData.healthDeclarations} title={() => <UserInfoBar/>} bordered >
                     <Column title={<span>Created At <br/>(SG Time)</span>} dataIndex="createdDateTime" key="createdDateTime" 
                         render={createdDateTime => ISOToSingaporeTime(createdDateTime)}
                     />
