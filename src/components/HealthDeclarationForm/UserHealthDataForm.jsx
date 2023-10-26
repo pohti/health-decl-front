@@ -8,6 +8,8 @@ import {
     Select,
     Divider
 } from 'antd'
+import SymptonsCheckboxGroup from './SymptonsCheckboxGroup'
+
 
 const { Option } = Select
 const { Item: FormItem } = Form
@@ -38,18 +40,6 @@ wrapperCol: {
 },
 };
 
-const symptonOptions = [
-    { label: 'Cough', value: 'cough' },
-    { label: 'Smell and Taste Impairment', value: 'smellAndTasteImpairment' },
-    { label: 'Fever', value: 'fever' },
-    { label: 'Breathing Difficulties', value: 'breathingDifficulties' },
-    { label: 'Body Aches', value: 'bodyAches' },
-    { label: 'Head Aches', value: 'headAches' },
-    { label: 'Fatigue', value: 'fatigue' },
-    { label: 'Sore Throat', value: 'soreThroat' },
-    { label: 'Diarrhea', value: 'diarrhea' },
-    { label: 'Runny Nose', value: 'runnyNose' },
-]
 
 const UserHealthDataForm = (props) => {
     const [hasSymptons, setHasSymptons] = useState(false)
@@ -106,7 +96,7 @@ const UserHealthDataForm = (props) => {
 
                 {/* Symptons */}
                 <FormItem name="symptons" label="Symptons">
-                    <Checkbox.Group options={symptonOptions} defaultValue={[]} />
+                    <SymptonsCheckboxGroup />
                 </FormItem>
 
 

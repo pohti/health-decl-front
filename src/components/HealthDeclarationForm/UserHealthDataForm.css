@@ -3,3 +3,8 @@
     padding: 15px;
     /* border: 1px solid blue; */
 }
+
+.symptonsRow > .ant-col {
+    display: flex;
+    align-items: flex-start;
+}

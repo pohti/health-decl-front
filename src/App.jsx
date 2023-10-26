@@ -7,7 +7,7 @@ import {
 } from 'antd'
 import { FileSearchOutlined, FormOutlined } from '@ant-design/icons';
 import ParticularsInput from './components/HealthDataDisplay/ParticularsInput';
-import UserHealthDataForm from './components/UserHealthDataForm';
+import UserHealthDataForm from './components/HealthDeclarationForm/UserHealthDataForm';
 import UserHealthDataDisplay from './components/HealthDataDisplay/UserHealthDataDisplay';
 import { getUserHealthInfo } from './api/api';
 
