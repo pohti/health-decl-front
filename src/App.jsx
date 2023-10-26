@@ -23,7 +23,7 @@ const App = () => {
 
 
   const handleTabChange = (key) => {
-    console.log(key);
+    // console.log(key);
   };
 
   const searchUserData = async () => {

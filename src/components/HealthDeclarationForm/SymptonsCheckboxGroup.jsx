@@ -14,8 +14,12 @@ const SymptonsCheckboxGroup = () => {
         { label: 'Runny Nose', value: 'runnyNose' },
     ]
 
+    const handleSymtonsChange = (selectedValues) => {
+        console.log('handleSymtonsChange', selectedValues)
+    }
+
     return (
-        <Checkbox.Group style={{ minWidth: "630px" }}>
+        <Checkbox.Group style={{ minWidth: "630px" }} onChange={handleSymtonsChange}>
             <Row align="middle" justify="start" className="symptonsRow">
                 <Col span={8}>
                     <Checkbox value="cough">Cough</Checkbox>

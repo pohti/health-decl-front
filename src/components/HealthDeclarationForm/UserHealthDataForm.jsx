@@ -25,19 +25,19 @@ const phonePrefix = (
         <Option value="86">+65</Option>
       </Select>
     </Form.Item>
-  );
+);
 
 const tailFormItemLayout = {
-wrapperCol: {
-    xs: {
-    span: 24,
-    offset: 0,
+    wrapperCol: {
+        xs: {
+        span: 24,
+        offset: 0,
+        },
+        sm: {
+        span: 16,
+        offset: 8,
+        },
     },
-    sm: {
-    span: 16,
-    offset: 8,
-    },
-},
 };
 
 
@@ -62,7 +62,7 @@ const UserHealthDataForm = (props) => {
                         },
                     ]}
                 >
-                    <Input placeholder="Alice Tan" allowClear/>
+                    <Input placeholder="Alice Tan" allowClear={true}/>
                 </FormItem>
                 <FormItem 
                     name="nric"
@@ -80,7 +80,7 @@ const UserHealthDataForm = (props) => {
                         }
                     ]}
                 >
-                    <Input placeholder="S1234567M" allowClear maxLength={9}/>
+                    <Input placeholder="S1234567M" allowClear={true} maxLength={9}/>
                 </FormItem>
                 <FormItem name="phone" label="Phone">
                     <Input placeholder="8888 9999" addonBefore={phonePrefix} allowClear/>
@@ -91,7 +91,7 @@ const UserHealthDataForm = (props) => {
                 
 
                 <FormItem name="temperature" label="Temperature">
-                    <InputNumber placeholder={36.7} addonAfter="°C"  allowClear/>
+                    <InputNumber placeholder={36.7} addonAfter="°C"/>
                 </FormItem>
 
                 {/* Symptons */}
@@ -102,7 +102,7 @@ const UserHealthDataForm = (props) => {
 
                 {/* ------------------------------------------------------------------ */}
                 <FormItem name="contactWithin14Days" label="Contact Within 14 Days">
-                    <Checkbox />
+                    <Checkbox style={{ display: 'flex', justifyContent: 'flex-start' }} />
                 </FormItem>
 
 
