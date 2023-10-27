@@ -85,7 +85,9 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
         else {
             return ( userData ? 
                     <UserDataTable/> : 
-                    <Empty description="No health declaration data found. Begin submitting by filling in the form on the left side." /> )
+                    <Empty description={<div style={{ fontSize:"18px" }}>
+                        No health declaration data found.
+                    </div>} /> )
         }
     }
 

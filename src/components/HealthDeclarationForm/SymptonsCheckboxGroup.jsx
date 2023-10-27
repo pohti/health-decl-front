@@ -1,6 +1,6 @@
 import { Checkbox, Row, Col } from 'antd'
 
-const SymptonsCheckboxGroup = () => {
+const SymptonsCheckboxGroup = ({ value={}, onChange }) => {
     const symptonOptions = [
         { label: 'Cough', value: 'cough' },
         { label: 'Smell and Taste Impairment', value: 'smellAndTasteImpairment' },
@@ -14,43 +14,17 @@ const SymptonsCheckboxGroup = () => {
         { label: 'Runny Nose', value: 'runnyNose' },
     ]
 
-    const handleSymtonsChange = (selectedValues) => {
-        console.log('handleSymtonsChange', selectedValues)
-    }
+    // const handleSymtonsChange = (selectedValues) => {
+    //     console.log('handleSymtonsChange', selectedValues)
+    // }
 
     return (
-        <Checkbox.Group style={{ minWidth: "630px" }} onChange={handleSymtonsChange}>
+        <Checkbox.Group style={{ minWidth: "630px" }} onChange={onChange}
+        >
             <Row align="middle" justify="start" className="symptonsRow">
-                <Col span={8}>
-                    <Checkbox value="cough">Cough</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="smellAndTasteImpairment">Smell and Taste Impairment</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="fever">Fever</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="breathingDifficulties">Breathing Difficulties</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="bodyAches">Body Aches</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="headAches">Head Aches</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="fatigue">Fatigue</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="soreThroat">Sore Throat</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="diarrhea">Diarrhea</Checkbox>
-                </Col>
-                <Col span={8}>
-                    <Checkbox value="runnyNose">Runny Nose</Checkbox>
-                </Col>
+                {symptonOptions.map(sympton => <Col span={8} key={sympton.value}>
+                    <Checkbox value={sympton.value}>{sympton.label}</Checkbox>
+                </Col>)}
             </Row>
         </Checkbox.Group>
     )
