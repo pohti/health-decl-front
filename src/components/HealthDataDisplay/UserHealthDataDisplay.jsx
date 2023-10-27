@@ -49,17 +49,16 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
 
     const UserDataTable = () => {
         console.log('healthDeclarations', userData.healthDeclarations)
-        // return <div>Table here</div>
         return (
             <div>
                 
-                <Table dataSource={userData.healthDeclarations} title={() => <UserInfoBar/>} bordered >
+                <Table size="small" dataSource={userData.healthDeclarations} title={() => <UserInfoBar/>} bordered >
                     <Column title={<span>Created At <br/>(SG Time)</span>} dataIndex="createdDateTime" key="createdDateTime" 
                         render={createdDateTime => ISOToSingaporeTime(createdDateTime)}
                     />
                     <Column title="Temperature, °C" dataIndex="temperature" key="temperature" />
             
-                    <ColumnGroup title="Symptons">
+                    <ColumnGroup title="Symptons" key="createdDateTime">
                         <Column title="Cough" dataIndex="symptons" key="createdDateTime" render={({cough}) => cough ? 'Yes' : 'No'}/>
                         <Column title="Smell and Taste Impairment" dataIndex="symptons" key="createdDateTime" render={({smellAndTasteImpairment}) => smellAndTasteImpairment ? 'Yes' : 'No'}/>
                         <Column title="Fever" dataIndex="symptons" key="createdDateTime" render={({fever}) => fever ? 'Yes' : 'No'}/>
