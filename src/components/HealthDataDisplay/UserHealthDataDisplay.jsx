@@ -12,9 +12,64 @@ import './UserHealthDataDisplay.css'
 
 const { Column, ColumnGroup } = Table 
 
-
+const symptonMappings = [
+    { label: 'Cough', value: 'cough' },
+    { label: 'Smell and Taste Impairment', value: 'smellAndTasteImpairment' },
+    { label: 'Fever', value: 'fever' },
+    { label: 'Breathing Difficulties', value: 'breathingDifficulties' },
+    { label: 'Body Aches', value: 'bodyAches' },
+    { label: 'Head Aches', value: 'headAches' },
+    { label: 'Fatigue', value: 'fatigue' },
+    { label: 'Sore Throat', value: 'soreThroat' },
+    { label: 'Diarrhea', value: 'diarrhea' },
+    { label: 'Runny Nose', value: 'runnyNose' },
+]
 
 const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
+    const generateCSVData = () => {
+        const userInfoRows = [
+            ['Fullname', userData.fullname],
+            ['NRIC/FIN', userData.nric],
+            ['Phone', userData.phone],
+        ]
+        let healthDeclarationRowsHeader = ['Created At', 'Temperature °C']
+        healthDeclarationRowsHeader.push(...symptonMappings.map(({label}) => label))
+        healthDeclarationRowsHeader.push('Contact Within 14 Days')
+
+        const healthDeclarationRows = userData.healthDeclarations.map(current => {
+            const { temperature, symptons, contactWithin14Days, createdDateTime } = current
+            
+            const createdDataTimeSGT = ISOToSingaporeTime(createdDateTime)
+            let currentRow = [ createdDataTimeSGT, temperature ]
+            for (let currentMapping of symptonMappings) {
+                currentRow.push(symptons[`${currentMapping.value}`] ? 'Yes' : 'No')
+            }
+            currentRow.push(contactWithin14Days ? 'Yes' : 'No')
+            return currentRow
+        })
+        // console.log('userInfoRows', userInfoRows)
+        // console.log('healthDeclarationRowsHeader', healthDeclarationRowsHeader)
+        // console.log('healthDeclarationRows', healthDeclarationRows)
+
+        const csvData = [ ...userInfoRows, healthDeclarationRowsHeader, ...healthDeclarationRows]
+        console.log('csvData', csvData)
+        return csvData
+    }
+
+    const downloadCSV = () => {
+        const csvContent = generateCSVData().map(row => row.join(',')).join('\n')
+        const blob = new Blob([csvContent], { type: 'text/csv' })
+        const url = URL.createObjectURL(blob)
+
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${userData.nric}_data.csv`
+
+        a.click()
+
+        URL.revokeObjectURL(url)
+        a.remove()
+    }
 
     const FirstVisitContent = () => (
         <div style={{ 
@@ -39,8 +94,9 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
             </Col>
             <Col span={12}>
                 <Row justify="end">
-
-                    <Button><DownloadOutlined /> {" "} Download CSV</Button>
+                    <Button onClick={downloadCSV}> 
+                        <DownloadOutlined /> {" "} Download CSV 
+                    </Button>
                 </Row>
             </Col>
         </Row>
@@ -48,7 +104,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
     }
 
     const UserDataTable = () => {
-        console.log('healthDeclarations', userData.healthDeclarations)
+        // console.log('healthDeclarations', userData.healthDeclarations)
         return (
             <div>
                 
@@ -59,6 +115,9 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
                     <Column title="Temperature, °C" dataIndex="temperature" key="temperature" />
             
                     <ColumnGroup title="Symptons" key="createdDateTime">
+                        {/* { symptonMappings.map(({label, value}) => <Column
+                            title={label} dataIndex={value} key="createdDateTime" render={sympton => sympton[`${value}`] ? 'Yes' : 'No'}
+                        />) } */}
                         <Column title="Cough" dataIndex="symptons" key="createdDateTime" render={({cough}) => cough ? 'Yes' : 'No'}/>
                         <Column title="Smell and Taste Impairment" dataIndex="symptons" key="createdDateTime" render={({smellAndTasteImpairment}) => smellAndTasteImpairment ? 'Yes' : 'No'}/>
                         <Column title="Fever" dataIndex="symptons" key="createdDateTime" render={({fever}) => fever ? 'Yes' : 'No'}/>
@@ -108,6 +167,6 @@ const ISOToSingaporeTime = (isoDatetimeString) => {
 
     // Format the date and time in Singapore time
     const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-    const singaporeTimeString = singaporeTime.toLocaleString('en-SG', options);
+    const singaporeTimeString = singaporeTime.toLocaleString('en-SG', options).replace(',', ' ');
     return singaporeTimeString
 }
