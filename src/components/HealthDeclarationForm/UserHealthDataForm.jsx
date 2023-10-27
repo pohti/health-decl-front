@@ -32,18 +32,12 @@ const phonePrefix = (
     </Form.Item>
 );
 
-const tailFormItemLayout = {
+const tailLayout = {
     wrapperCol: {
-        xs: {
-        span: 24,
-        offset: 0,
-        },
-        sm: {
-        span: 16,
-        offset: 8,
-        },
+      offset: 3,
+      span: 16,
     },
-};
+  };
 
 
 const UserHealthDataForm = (props) => {
@@ -52,6 +46,10 @@ const UserHealthDataForm = (props) => {
     const onFinish = (values) => {
         console.log('Received values from form: ', values);
     };
+
+    const handleReset = () => {
+        form.resetFields();
+    }
 
     return (
         <div className='healthDataFormMain'>
@@ -66,29 +64,25 @@ const UserHealthDataForm = (props) => {
                 <FormItem 
                     name="fullname"
                     label="Full Name"
-                    // rules={[
-                    //     {
-                    //     required: true,
-                    //     message: 'Please enter your name!',
-                    //     },
-                    // ]}
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please enter your name!',
+                        },
+                    ]}
                 >
                     <Input placeholder="Alice Tan" allowClear={true}/>
                 </FormItem>
                 <FormItem 
                     name="nric"
                     label="NRIC/FIN"
-                    // rules={[
-                    //     {
-                    //         required: true,
-                    //         message: 'Please enter your NRIC/FIN!',
-                    //     },
-                    //     {
-                    //         validator: (_, value) => {
-                    //             return value.length === 9 ? Promise.resolve(): Promise.reject(new Error('Invalid format for NRIC/FIN'))
-                    //         }
-                    //     }
-                    // ]}
+                    rules={[
+                        {
+                            validator: (_, value) => {
+                                return value.length === 9 ? Promise.resolve(): Promise.reject(new Error('Invalid format for NRIC/FIN'))
+                            }
+                        }
+                    ]}
                 >
                     <Input placeholder="S1234567M" allowClear={true} maxLength={9}/>
                 </FormItem>
@@ -100,8 +94,17 @@ const UserHealthDataForm = (props) => {
                 <Divider orientation="left">Health Details</Divider>
                 
 
-                <FormItem name="temperature" label="Temperature">
-                    <InputNumber placeholder={36.7} addonAfter="°C"/>
+                <FormItem name="temperature" label="Temperature"
+                    rules={[
+                        {
+                            validator: (_, value) => {
+                                const isValidTemp = value >= 25 && value <= 50
+                                return isValidTemp ? Promise.resolve(): Promise.reject(new Error('Invalid format for NRIC/FIN'))
+                            }
+                        }
+                    ]}
+                >
+                    <InputNumber placeholder={36.7} addonAfter="°C" size="middle" />
                 </FormItem>
 
                 {/* Symptons */}
@@ -128,12 +131,17 @@ const UserHealthDataForm = (props) => {
 
 
                 {/* ------------------------------------------------------------------ */}
-                {/* Submit button */}
-                <Form.Item {...tailFormItemLayout}>
+                {/* Buttons */}
+                <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
+                    <Button htmlType="button" onClick={handleReset} style={{ marginLeft: '10px' }}>
+                        Reset
+                    </Button>
                 </Form.Item>
+
+
             </Form>
         </div>
     )
