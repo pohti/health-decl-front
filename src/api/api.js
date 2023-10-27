@@ -24,5 +24,25 @@ export const getUserHealthInfo = async (queryParams) => {
         return data
     } catch (error){
         console.error(error)
+        throw new Error('Error during getUserHealthInfo')
     } 
+}
+
+export const addUserHealthInfo = async (userData) => {
+    const url = `${BASE_URL}/users`
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify(userData)
+        })
+        const data = await response.json()
+        if (response.status !== 200) throw new Error('error adding user health data')
+        return data
+
+    } catch (error) {
+        console.log(error)
+        throw new Error('Error during addUserHealthInfo')
+    }
 }

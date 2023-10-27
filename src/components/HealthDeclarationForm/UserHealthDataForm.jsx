@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import './UserHealthDataForm.css'
 import {
     Form,
@@ -6,10 +6,11 @@ import {
     Input, InputNumber,
     Checkbox,
     Select,
-    Divider
+    Divider,
+    notification
 } from 'antd'
 import SymptonsCheckboxGroup from './SymptonsCheckboxGroup'
-
+import { addUserHealthInfo } from '../../api/api'
 
 const { Option } = Select
 const { Item: FormItem } = Form
@@ -37,14 +38,61 @@ const tailLayout = {
       offset: 3,
       span: 16,
     },
-  };
+};
 
+const parseSymptons = symptons => {
+    let output = {}
+    for (let sympton of symptons) {
+        output[`${sympton}`] = true
+    }
+    return output
+}
 
 const UserHealthDataForm = (props) => {
+    const [isLoading, setIsLoading] = useState(false)
     const [form] = Form.useForm();
+    const [api, contextHolder] = notification.useNotification(); 
 
-    const onFinish = (values) => {
-        console.log('Received values from form: ', values);
+    const openNotificationWithIcon = (type, message, description) => {
+        api[type]({
+          message,
+          description
+        });
+      };
+
+    const onFinish = async (values) => {
+        // console.log('Received values from form: ', values);
+        const {
+            fullname, nric, phone, phonePrefix,
+            contactWithin14Days,
+            symptons,
+            temperature
+        } = values
+        const userData = {
+            fullname,
+            nric,
+            phone: `${phonePrefix} ${phone}`,
+            healthDetails: {
+                temperature,
+                symptons: parseSymptons(symptons),
+                contactWithin14Days
+            }
+        }
+        console.log('userData to be submitted', userData)
+
+        try {
+            setIsLoading(true)
+            const response = await addUserHealthInfo(userData)
+            console.log('submission response', response)
+
+            openNotificationWithIcon('success', 'Done!','Health declaration submitted successfully')
+            form.resetFields();
+        } catch (eInfo) {
+            console.error(eInfo)
+            openNotificationWithIcon('error', 'Failed!','Please try again!')
+        } finally {
+            setIsLoading(false)
+        }
     };
 
     const handleReset = () => {
@@ -52,8 +100,11 @@ const UserHealthDataForm = (props) => {
     }
 
     return (
+
         <div className='healthDataFormMain'>
+            {contextHolder}
             <Form
+                disabled={isLoading}
                 form={form}
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 10 }}
@@ -99,7 +150,7 @@ const UserHealthDataForm = (props) => {
                         {
                             validator: (_, value) => {
                                 const isValidTemp = value >= 25 && value <= 50
-                                return isValidTemp ? Promise.resolve(): Promise.reject(new Error('Invalid format for NRIC/FIN'))
+                                return isValidTemp ? Promise.resolve(): Promise.reject(new Error('Invalid format for temperature'))
                             }
                         }
                     ]}
@@ -111,14 +162,6 @@ const UserHealthDataForm = (props) => {
                 <FormItem 
                     name="symptons" 
                     label="Symptons"
-                    rules={[
-                        {
-                            validator: (_, value) => {
-                                console.log('symptons', value)
-                                return Promise.resolve()
-                            }
-                        }
-                    ]}
                 >
                     <SymptonsCheckboxGroup />
                 </FormItem>
@@ -133,10 +176,10 @@ const UserHealthDataForm = (props) => {
                 {/* ------------------------------------------------------------------ */}
                 {/* Buttons */}
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" disabled={isLoading}>
                         Submit
                     </Button>
-                    <Button htmlType="button" onClick={handleReset} style={{ marginLeft: '10px' }}>
+                    <Button onClick={handleReset} style={{ marginLeft: '10px' }} >
                         Reset
                     </Button>
                 </Form.Item>
