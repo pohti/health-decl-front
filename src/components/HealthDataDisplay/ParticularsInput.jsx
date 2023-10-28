@@ -20,7 +20,7 @@ const ParticularsInput = (props) => {
 
     return (
         <Row className='particularsInputRow' gutter={[12, 8]}
-            justify="start" align="middle" >
+            justify="center" align="middle">
             <Col>
                 <label>Full Name</label> {" "}
                 <Input 

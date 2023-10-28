@@ -64,7 +64,9 @@ const UserHealthDataForm = (props) => {
       };
 
     const onFinish = async (values) => {
-        console.log('Received values from form: ', values);
+
+        if (!values) return
+        // console.log('Received values from form: ', values);
         const {
             fullname, nric, phone, phonePrefix,
             contactWithin14Days,
@@ -81,7 +83,7 @@ const UserHealthDataForm = (props) => {
             }
         }
         if (symptons) userData.healthDetails.symptons = parseSymptons(symptons)
-        console.log('userData to be submitted', userData)
+        // console.log('userData to be submitted', userData)
 
         try {
             setIsLoading(true)
@@ -132,8 +134,8 @@ const UserHealthDataForm = (props) => {
                     label="NRIC/FIN"
                     rules={[
                         {
-                            validator: (_, value) => {
-                                return value.length === 9 ? Promise.resolve(): Promise.reject(new Error('Invalid format for NRIC/FIN'))
+                            validator: (_, value) => { 
+                                return value?.length === 9 ? Promise.resolve(): Promise.reject(new Error('Invalid format for NRIC/FIN'))
                             }
                         }
                     ]}

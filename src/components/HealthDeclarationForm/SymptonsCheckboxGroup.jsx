@@ -18,7 +18,7 @@ const SymptonsCheckboxGroup = ({ value={}, onChange }) => {
         <Checkbox.Group style={{ minWidth: "630px" }} onChange={onChange}
         >
             <Row align="middle" justify="start" className="symptonsRow">
-                {symptonOptions.map(sympton => <Col span={8} key={sympton.value}>
+                {symptonOptions.map(sympton => <Col xs={24} sm={24} md={8} key={sympton.value}>
                     <Checkbox value={sympton.value}>{sympton.label}</Checkbox>
                 </Col>)}
             </Row>

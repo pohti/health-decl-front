@@ -85,14 +85,14 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
 
     const UserInfoBar = () => {
         return <Row align="middle">
-            <Col span={12}>
+            <Col sm={24} md={12}>
                 <Row justify="start" style={{ fontSize: "16px" }}>
                     <span><b>Full Name:</b> {" "} {userData.fullname}</span>
                     <Divider type="vertical" />
                     <span><b>Phone:</b> {" "} {userData.phone || "NA"}</span>
                 </Row>
             </Col>
-            <Col span={12}>
+            <Col sm={24} md={12}>
                 <Row justify="end">
                     <Button onClick={downloadCSV}> 
                         <DownloadOutlined /> {" "} Download CSV 
