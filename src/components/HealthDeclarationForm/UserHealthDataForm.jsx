@@ -7,8 +7,10 @@ import {
     Checkbox,
     Select,
     Divider,
-    notification
+    notification,
+    Tooltip
 } from 'antd'
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import SymptonsCheckboxGroup from './SymptonsCheckboxGroup'
 import { addUserHealthInfo } from '../../api/api'
 
@@ -41,6 +43,7 @@ const tailLayout = {
 };
 
 const parseSymptons = symptons => {
+
     let output = {}
     for (let sympton of symptons) {
         output[`${sympton}`] = true
@@ -61,23 +64,23 @@ const UserHealthDataForm = (props) => {
       };
 
     const onFinish = async (values) => {
-        // console.log('Received values from form: ', values);
+        console.log('Received values from form: ', values);
         const {
             fullname, nric, phone, phonePrefix,
             contactWithin14Days,
             symptons,
             temperature
         } = values
-        const userData = {
+        let userData = {
             fullname,
             nric,
             phone: `${phonePrefix} ${phone}`,
             healthDetails: {
                 temperature,
-                symptons: parseSymptons(symptons),
                 contactWithin14Days
             }
         }
+        if (symptons) userData.healthDetails.symptons = parseSymptons(symptons)
         console.log('userData to be submitted', userData)
 
         try {
@@ -161,7 +164,12 @@ const UserHealthDataForm = (props) => {
                 {/* Symptons */}
                 <FormItem 
                     name="symptons" 
-                    label="Symptons"
+                    label={<span>
+                        Symptons {" "}
+                        <Tooltip title="Leave the checkboxes unchecked if you do not have any symptons">
+                            <QuestionCircleOutlined />
+                        </Tooltip>
+                    </span>}
                 >
                     <SymptonsCheckboxGroup />
                 </FormItem>
@@ -179,7 +187,7 @@ const UserHealthDataForm = (props) => {
                     <Button type="primary" htmlType="submit" disabled={isLoading}>
                         Submit
                     </Button>
-                    <Button onClick={handleReset} style={{ marginLeft: '10px' }} >
+                    <Button loading={isLoading} onClick={handleReset} style={{ marginLeft: '10px' }} >
                         Reset
                     </Button>
                 </Form.Item>

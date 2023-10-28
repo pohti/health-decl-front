@@ -112,7 +112,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
                     <Column title={<span>Created At <br/>(SG Time)</span>} dataIndex="createdDateTime" key="createdDateTime" 
                         render={createdDateTime => ISOToSingaporeTime(createdDateTime)}
                     />
-                    <Column title="Temperature, °C" dataIndex="temperature" key="temperature" />
+                    <Column title="Temperature, °C" dataIndex="temperature" key="createdDateTime" />
             
                     <ColumnGroup title="Symptons" key="createdDateTime">
                         {/* { symptonMappings.map(({label, value}) => <Column
