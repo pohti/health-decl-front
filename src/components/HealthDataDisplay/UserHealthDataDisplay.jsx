@@ -84,15 +84,16 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
     )
 
     const UserInfoBar = () => {
+        console.log('userData', userData)
         return <Row align="middle">
-            <Col sm={24} md={12}>
-                <Row justify="start" style={{ fontSize: "16px" }}>
+            <Col xs={24} sm={24} md={12}>
+                <Row justify="start" align="middle" style={{ fontSize: "16px" }}>
                     <span><b>Full Name:</b> {" "} {userData.fullname}</span>
                     <Divider type="vertical" />
                     <span><b>Phone:</b> {" "} {userData.phone || "NA"}</span>
                 </Row>
             </Col>
-            <Col sm={24} md={12}>
+            <Col xs={24} sm={24} md={12}>
                 <Row justify="end">
                     <Button onClick={downloadCSV}> 
                         <DownloadOutlined /> {" "} Download CSV 
@@ -108,11 +109,16 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
         return (
             <div>
                 
-                <Table size="small" dataSource={userData.healthDeclarations} title={() => <UserInfoBar/>} bordered >
-                    <Column title={<span>Created At <br/>(SG Time)</span>} dataIndex="createdDateTime" key="createdDateTime" 
+                <Table size="small" dataSource={userData.healthDeclarations} 
+                    title={() => <UserInfoBar/>} bordered 
+                    scroll={{ x: 1300, y: true }}
+                >
+                    <Column title={<span>Created At <br/>(SG Time)</span>} 
+                        dataIndex="createdDateTime" key="createdDateTime" width={200}
                         render={createdDateTime => ISOToSingaporeTime(createdDateTime)}
+                        sorter={compareISODates}
                     />
-                    <Column title="Temperature, °C" dataIndex="temperature" key="createdDateTime" />
+                    <Column title={<span>Temp <br/>°C</span>} dataIndex="temperature" key="createdDateTime" />
             
                     <ColumnGroup title="Symptons" key="createdDateTime">
                         {/* { symptonMappings.map(({label, value}) => <Column
@@ -157,6 +163,12 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
 }
 
 export default UserHealthDataDisplay
+
+const compareISODates = (rowA, rowB) => {
+
+    console.log('dateA', rowA.createdDateTime, 'rowB.createdDateTime', rowB.createdDateTime, new Date(rowA.createdDateTime) < new Date(rowB.createdDateTime))
+    return new Date(rowA.createdDateTime) < new Date(rowB.createdDateTime)
+}
 
 const ISOToSingaporeTime = (isoDatetimeString) => {
     // Parse the ISO datetime string into a JavaScript Date object
