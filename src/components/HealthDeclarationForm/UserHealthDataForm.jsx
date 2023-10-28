@@ -135,7 +135,10 @@ const UserHealthDataForm = (props) => {
                     rules={[
                         {
                             validator: (_, value) => { 
-                                return value?.length === 9 ? Promise.resolve(): Promise.reject(new Error('Invalid format for NRIC/FIN'))
+                                const regex = /^[A-Za-z]\d{7}[A-Za-z]$/; // starts and ends with capital alphabet, 7 numbers in between
+                                return value && regex.test(value) ? 
+                                    Promise.resolve(): 
+                                    Promise.reject(new Error('Invalid format for NRIC/FIN'))
                             }
                         }
                     ]}
