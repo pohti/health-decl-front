@@ -84,7 +84,8 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
     )
 
     const UserInfoBar = () => {
-        console.log('userData', userData)
+        //console.log('userData', userData)
+        
         return <Row align="middle">
             <Col xs={24} sm={24} md={12}>
                 <Row justify="start" align="middle" style={{ fontSize: "16px" }}>

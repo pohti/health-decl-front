@@ -66,7 +66,7 @@ const UserHealthDataForm = (props) => {
     const onFinish = async (values) => {
 
         if (!values) return
-        // console.log('Received values from form: ', values);
+        console.log('Received values from form: ', values);
         const {
             fullname, nric, phone, phonePrefix,
             contactWithin14Days,
@@ -76,12 +76,12 @@ const UserHealthDataForm = (props) => {
         let userData = {
             fullname,
             nric,
-            phone: `${phonePrefix} ${phone}`,
             healthDetails: {
                 temperature,
                 contactWithin14Days
             }
         }
+        if (phone) userData.phone = `${phonePrefix} ${phone}`
         if (symptons) userData.healthDetails.symptons = parseSymptons(symptons)
         // console.log('userData to be submitted', userData)
 
@@ -179,7 +179,9 @@ const UserHealthDataForm = (props) => {
 
                 {/* ------------------------------------------------------------------ */}
                 <FormItem name="contactWithin14Days" label="Contact Within 14 Days" valuePropName="checked">
-                    <Checkbox style={{ display: 'flex', justifyContent: 'flex-start' }}/>
+                    <Checkbox style={{ display: 'flex', justifyContent: 'flex-start' }}
+                        defaultChecked={false}
+                    />
                 </FormItem>
 
 
