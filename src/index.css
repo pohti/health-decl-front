@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  max-height: 100vh;
+  overflow-y: auto; /* This will add a vertical scrollbar if the content overflows */
+  max-height: 100vh !important;
 }
 
 code {

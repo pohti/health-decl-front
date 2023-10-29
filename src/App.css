@@ -6,6 +6,7 @@
 
 .layoutMain {
     min-height: 100vh;
+    overflow-y: auto;
     text-align: center;
 }
 
