@@ -76,12 +76,11 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
             className="firstVisitContent"
             
             style={{ 
-                fontSize: '25px', 
                 lineHeight: '45px',
                 paddingTop: '45px'
         }}>
             <InfoCircleOutlined /> {" "}
-            Search for user health declaration data <br/>
+            Search for user health declaration data
             by providing fullname or NRIC/FIN.
         </div>
     )

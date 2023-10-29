@@ -9,4 +9,13 @@
 
 .firstVisitContent {
     color: #4e4e4e;
+    font-size: 25px;
+    /* border: 1px solid red; */
+    
+}
+
+@media only screen and (max-width: 500px) {
+    .firstVisitContent {
+        font-size: 22px;
+    }
 }

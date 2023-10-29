@@ -13,3 +13,13 @@
     padding-left: 5px;
     text-align: start;
 }
+
+/* .ant-form-item-row {
+    border: 1px solid red;
+} */
+
+@media only screen and (max-width: 500px) {
+    .healthDataFormMain {
+        text-align: start;
+    }
+}
