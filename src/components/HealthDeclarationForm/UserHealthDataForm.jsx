@@ -197,10 +197,10 @@ const UserHealthDataForm = (props) => {
                 {/* ------------------------------------------------------------------ */}
                 {/* Buttons */}
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit" disabled={isLoading}>
+                    <Button loading={isLoading} type="primary" htmlType="submit" disabled={isLoading}>
                         Submit
                     </Button>
-                    <Button loading={isLoading} onClick={handleReset} style={{ marginLeft: '10px' }} >
+                    <Button  onClick={handleReset} style={{ marginLeft: '10px' }} >
                         Reset
                     </Button>
                 </Form.Item>
