@@ -10,6 +10,7 @@ import ParticularsInput from './components/HealthDataDisplay/ParticularsInput';
 import UserHealthDataForm from './components/HealthDeclarationForm/UserHealthDataForm';
 import UserHealthDataDisplay from './components/HealthDataDisplay/UserHealthDataDisplay';
 import { getUserHealthInfo } from './api/api';
+import CustomFooter from './components/CustomFooter/CustomFooter';
 
 const { Header, Content, Footer } = Layout
 
@@ -91,7 +92,9 @@ const App = () => {
           onChange={handleTabChange}
         />
       </Content>
-      <Footer className="layoutFooter" >Contact the developer</Footer>
+      <Footer className="layoutFooter" >
+        <CustomFooter />
+      </Footer>
     </Layout>
   );
 }

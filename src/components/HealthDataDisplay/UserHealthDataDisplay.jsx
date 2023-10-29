@@ -52,7 +52,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
         // console.log('healthDeclarationRows', healthDeclarationRows)
 
         const csvData = [ ...userInfoRows, healthDeclarationRowsHeader, ...healthDeclarationRows]
-        console.log('csvData', csvData)
+        // console.log('csvData', csvData)
         return csvData
     }
 
@@ -72,10 +72,13 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
     }
 
     const FirstVisitContent = () => (
-        <div style={{ 
-            fontSize: '25px', 
-            lineHeight: '45px',
-            paddingTop: '45px'
+        <div
+            className="firstVisitContent"
+            
+            style={{ 
+                fontSize: '25px', 
+                lineHeight: '45px',
+                paddingTop: '45px'
         }}>
             <InfoCircleOutlined /> {" "}
             Search for user health declaration data <br/>
@@ -85,7 +88,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
 
     const UserInfoBar = () => {
         //console.log('userData', userData)
-        
+
         return <Row align="middle">
             <Col xs={24} sm={24} md={12}>
                 <Row justify="start" align="middle" style={{ fontSize: "16px" }}>
@@ -96,7 +99,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
             </Col>
             <Col xs={24} sm={24} md={12}>
                 <Row justify="end">
-                    <Button onClick={downloadCSV}> 
+                    <Button onClick={downloadCSV} type="primary"> 
                         <DownloadOutlined /> {" "} Download CSV 
                     </Button>
                 </Row>
@@ -167,7 +170,7 @@ export default UserHealthDataDisplay
 
 const compareISODates = (rowA, rowB) => {
 
-    console.log('dateA', rowA.createdDateTime, 'rowB.createdDateTime', rowB.createdDateTime, new Date(rowA.createdDateTime) < new Date(rowB.createdDateTime))
+    // console.log('dateA', rowA.createdDateTime, 'rowB.createdDateTime', rowB.createdDateTime, new Date(rowA.createdDateTime) < new Date(rowB.createdDateTime))
     return new Date(rowA.createdDateTime) < new Date(rowB.createdDateTime)
 }
 

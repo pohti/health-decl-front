@@ -1,0 +1,60 @@
+div.footer-row {
+    /* border-style: solid;
+    border-width: 1px;
+    border-color: red; */
+  
+    max-width: var(--max-content-width);
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  div.footer-row > div.ant-col {
+    /* border-style: solid;
+    border-width: 1px;
+    border-color: red; */
+  
+    font-size: var(--global-general-font-size);
+    display: flex;
+    justify-content: center;
+  }
+  
+  a{
+      text-decoration: none;
+      color: var(--main-font-color)
+  }
+  
+  .social-media-link:hover {
+    color: var(--main-font-selected-color)
+  }
+  
+  /* phone and mail icon */
+  .contact-popover-icon > svg {
+    margin-top: 4px;
+  }
+  
+  .contact-popover-icon {
+    cursor: pointer;
+  }
+  
+  .footer-popover-content {
+    color: var(--main-font-color);
+  }
+  
+  
+  .copy-button {
+    font-size: 19px;
+    cursor: pointer;
+    padding: 5px 8px;
+    margin-left: 8px;
+    background-color: rgb(244, 244, 244);
+  
+    border-radius: 5px;
+    border-color: rgba(164, 161, 161, 0.209);
+    border-style: solid;
+    border-width: 0.5px;
+  }
+  
+  .copy-button:hover {
+    color: rgb(0, 136, 255);
+    border-color: rgba(0, 136, 255, 0.402);
+  }
