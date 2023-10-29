@@ -88,7 +88,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
     const UserInfoBar = () => {
         //console.log('userData', userData)
 
-        return <Row align="middle">
+        return <Row align="middle" gutter={[16,8]}>
             <Col xs={24} sm={24} md={12}>
                 <Row justify="start" align="middle" style={{ fontSize: "16px" }}>
                     <span><b>Full Name:</b> {" "} {userData.fullname}</span>
@@ -97,7 +97,7 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
                 </Row>
             </Col>
             <Col xs={24} sm={24} md={12}>
-                <Row justify="end">
+                <Row justify={{ sm: 'end', xs: 'start' }}>
                     <Button onClick={downloadCSV} type="primary"> 
                         <DownloadOutlined /> {" "} Download CSV 
                     </Button>
