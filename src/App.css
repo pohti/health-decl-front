@@ -30,3 +30,11 @@
     color: var(--primary-font-color);
     background-color: var(--primary-bg-color);
 }
+
+/* .ant-tabs-tab-active {
+    background-color: var(--primary-bg-color);
+} */
+
+.ant-tabs-nav {
+    border-bottom: 0.5px solid rgba(170, 170, 170, 0.425);
+}

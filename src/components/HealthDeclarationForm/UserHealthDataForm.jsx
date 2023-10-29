@@ -153,12 +153,18 @@ const UserHealthDataForm = (props) => {
                 <Divider orientation="left">Health Details</Divider>
                 
 
-                <FormItem name="temperature" label="Temperature"
+                <FormItem name="temperature" 
+                    label={<span>
+                        Temperature {" "}
+                        <Tooltip title="Only accepts value between 25°C and 50°C">
+                            <QuestionCircleOutlined />
+                        </Tooltip>
+                    </span>}
                     rules={[
                         {
                             validator: (_, value) => {
                                 const isValidTemp = value >= 25 && value <= 50
-                                return isValidTemp ? Promise.resolve(): Promise.reject(new Error('Invalid format for temperature'))
+                                return isValidTemp ? Promise.resolve(): Promise.reject(new Error('Invalid value for temperature'))
                             }
                         }
                     ]}

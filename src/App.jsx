@@ -5,7 +5,7 @@ import {
   message as AntdMessage,
   Tabs
 } from 'antd'
-import { FileSearchOutlined, FormOutlined } from '@ant-design/icons';
+import { FileSearchOutlined, FormOutlined, SafetyOutlined } from '@ant-design/icons';
 import ParticularsInput from './components/HealthDataDisplay/ParticularsInput';
 import UserHealthDataForm from './components/HealthDeclarationForm/UserHealthDataForm';
 import UserHealthDataDisplay from './components/HealthDataDisplay/UserHealthDataDisplay';
@@ -82,10 +82,10 @@ const App = () => {
 
   return (
     <Layout className="layoutMain">
-      <Header className='layoutHeader'>Health Declaration App</Header>
+      <Header className='layoutHeader'><SafetyOutlined style={{ marginRight: '15px' }}/> Health Declaration Tool</Header>
       <Content className='layoutContent'>
         <Tabs 
-          type="card"
+          type="line"
           size="large"
           defaultActiveKey='1' 
           items={tabItems} 
