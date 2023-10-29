@@ -8,3 +8,31 @@
     align-items: center; */
     padding: 15px 10px;
 }
+
+.particularsInput {
+    max-width: 200px;
+}
+
+@media only screen and (max-width: 500px) {
+    .particularsInput {
+        /* border: 1px solid red; */
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .particularsInputRow {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .particularsInputCol {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 8px;
+        /* border: 1px solid red; */
+    }
+}

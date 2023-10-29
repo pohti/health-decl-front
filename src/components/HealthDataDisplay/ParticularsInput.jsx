@@ -21,19 +21,21 @@ const ParticularsInput = (props) => {
     return (
         <Row className='particularsInputRow' gutter={[12, 8]}
             justify="center" align="middle">
-            <Col>
+            <Col className='particularsInputCol'>
                 <label>Full Name</label> {" "}
                 <Input 
-                    style={{ maxWidth: '200px' }}
+                    className="particularsInput"
+                    // style={{ maxWidth: '200px' }}
                     placeholder="Alice Tan" 
                     onChange={handleFullnameChange} 
                     value={fullname} allowClear
                 />
             </Col>
-            <Col>
+            <Col className='particularsInputCol'>
                 <label>NRIC</label> {" "}
                 <Input 
-                    style={{ maxWidth: '180px' }}
+                    className="particularsInput"
+                    // style={{ maxWidth: '180px' }}
                     placeholder="S1234567M" 
                     onChange={handleNRICChange} 
                     value={nric} 
