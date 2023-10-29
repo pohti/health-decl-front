@@ -6,13 +6,5 @@
     margin-top: 10px;
     justify-content: center;
     align-items: center; */
-
     padding: 15px 10px;
-}
-
-.particulars-input-div > .ant-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
 }

@@ -66,7 +66,7 @@ const UserHealthDataForm = (props) => {
     const onFinish = async (values) => {
 
         if (!values) return
-        console.log('Received values from form: ', values);
+        // console.log('Received values from form: ', values);
         const {
             fullname, nric, phone, phonePrefix,
             contactWithin14Days,
@@ -156,7 +156,7 @@ const UserHealthDataForm = (props) => {
                 <FormItem name="temperature" 
                     label={<span>
                         Temperature {" "}
-                        <Tooltip title="Only accepts value between 25°C and 50°C">
+                        <Tooltip title="Only accepts values between 25°C and 50°C">
                             <QuestionCircleOutlined />
                         </Tooltip>
                     </span>}
