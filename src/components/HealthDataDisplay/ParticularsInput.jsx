@@ -28,6 +28,7 @@ const ParticularsInput = (props) => {
                     // style={{ maxWidth: '200px' }}
                     placeholder="Alice Tan" 
                     onChange={handleFullnameChange} 
+                    onPressEnter={searchUserData}
                     value={fullname} allowClear
                 />
             </Col>
@@ -38,6 +39,7 @@ const ParticularsInput = (props) => {
                     // style={{ maxWidth: '180px' }}
                     placeholder="S1234567M" 
                     onChange={handleNRICChange} 
+                    onPressEnter={searchUserData}
                     value={nric} 
                     allowClear
                 />

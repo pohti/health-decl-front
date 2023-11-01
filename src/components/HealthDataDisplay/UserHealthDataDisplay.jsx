@@ -123,9 +123,9 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
                     />
                     <Column title={<span>Temp <br/>°C</span>} dataIndex="temperature" key="createdDateTime" />
             
-                    <ColumnGroup title="Symptons" key="createdDateTime">
+                    <ColumnGroup title="Symptons" key="symptons">
                         {/* { symptonMappings.map(({label, value}) => <Column
-                            title={label} dataIndex={value} key="createdDateTime" render={sympton => sympton[`${value}`] ? 'Yes' : 'No'}
+                            title={label} dataIndex={value} key={value} render={({sympton}) => sympton[`${value}`] ? 'Yes' : 'No'}
                         />) } */}
                         <Column title="Cough" dataIndex="symptons" key="createdDateTime" render={({cough}) => cough ? 'Yes' : 'No'}/>
                         <Column title="Smell and Taste Impairment" dataIndex="symptons" key="createdDateTime" render={({smellAndTasteImpairment}) => smellAndTasteImpairment ? 'Yes' : 'No'}/>
@@ -137,6 +137,17 @@ const UserHealthDataDisplay = ({isFirstVisit, userData, isLoading}) => {
                         <Column title="Sore Throat" dataIndex="symptons" key="createdDateTime" render={({soreThroat}) => soreThroat ? 'Yes' : 'No'}/>
                         <Column title="Diarrhea" dataIndex="symptons" key="createdDateTime" render={({diarrhea}) => diarrhea ? 'Yes' : 'No'}/>
                         <Column title="Runny Nose" dataIndex="symptons" key="createdDateTime" render={({runnyNose}) => runnyNose ? 'Yes' : 'No'}/>
+
+                        {/* <Column title="Cough" dataIndex="symptons" key="cough" render={({cough}) => cough ? 'Yes' : 'No'}/>
+                        <Column title="Smell and Taste Impairment" dataIndex="symptons" key="smellAndTasteImpairment" render={({smellAndTasteImpairment}) => smellAndTasteImpairment ? 'Yes' : 'No'}/>
+                        <Column title="Fever" dataIndex="symptons" key="fever" render={({fever}) => fever ? 'Yes' : 'No'}/>
+                        <Column title="Breathing Difficulties" dataIndex="symptons" key="breathingDifficulties" render={({breathingDifficulties}) => breathingDifficulties ? 'Yes' : 'No'}/>
+                        <Column title="Body Aches" dataIndex="symptons" key="bodyAches" render={({bodyAches}) => bodyAches ? 'Yes' : 'No'}/>
+                        <Column title="Head Aches" dataIndex="symptons" key="headAches" render={({headAches}) => headAches ? 'Yes' : 'No'}/>
+                        <Column title="Fatigue" dataIndex="symptons" key="fatigue" render={({fatigue}) => fatigue ? 'Yes' : 'No'}/>
+                        <Column title="Sore Throat" dataIndex="symptons" key="soreThroat" render={({soreThroat}) => soreThroat ? 'Yes' : 'No'}/>
+                        <Column title="Diarrhea" dataIndex="symptons" key="diarrhea" render={({diarrhea}) => diarrhea ? 'Yes' : 'No'}/>
+                        <Column title="Runny Nose" dataIndex="symptons" key="runnyNose" render={({runnyNose}) => runnyNose ? 'Yes' : 'No'}/> */}
                     </ColumnGroup>
             
                     <Column title="Contact Within 14 Days" dataIndex="contactWithin14Days" key="contactWithin14Days" render={(contactWithin14Days) => contactWithin14Days ? 'Yes' : 'No'}/>
