@@ -15,8 +15,7 @@ import CustomFooter from './components/CustomFooter/CustomFooter';
 const { Header, Content, Footer } = Layout
 
 const App = () => {
-  const [fullname, setFullname] = useState('')
-  const [nric, setNRIC] = useState('')
+
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState(null)
   const [isFirstVisit, setIsFirstVisit] = useState(true)
@@ -27,7 +26,7 @@ const App = () => {
     // console.log(key);
   };
 
-  const searchUserData = async () => {
+  const searchUserData = async (fullname, nric) => {
     // validate
     if (!fullname && !nric) {
       AntdMessage.error('Please provide either full name or NRIC/FIN no!')
@@ -59,9 +58,7 @@ const App = () => {
       label: <span><FileSearchOutlined /> {" "} Search User Data</span>,
       children: (
         <div>
-            <ParticularsInput 
-              fullname={fullname} setFullname={setFullname}
-              nric={nric} setNRIC={setNRIC}
+            <ParticularsInput
               isLoading={isLoading}
               searchUserData={searchUserData}
             />

@@ -1,14 +1,16 @@
+import { useState } from 'react'
 import { Input, Button, Row, Col } from 'antd'
 import { SearchOutlined } from '@ant-design/icons';
 import './ParticularsInput.css'
 
 const ParticularsInput = (props) => {
     const {
-        fullname, setFullname,
-        nric, setNRIC,
         isLoading,
         searchUserData
     } = props
+
+    const [fullname, setFullname] = useState('')
+    const [nric, setNRIC] = useState('')
 
     const handleFullnameChange = (event) => {
         setFullname(event.target.value)
@@ -28,7 +30,7 @@ const ParticularsInput = (props) => {
                     // style={{ maxWidth: '200px' }}
                     placeholder="Alice Tan" 
                     onChange={handleFullnameChange} 
-                    onPressEnter={searchUserData}
+                    onPressEnter={() => searchUserData(fullname, nric)}
                     value={fullname} allowClear
                 />
             </Col>
@@ -39,14 +41,14 @@ const ParticularsInput = (props) => {
                     // style={{ maxWidth: '180px' }}
                     placeholder="S1234567M" 
                     onChange={handleNRICChange} 
-                    onPressEnter={searchUserData}
+                    onPressEnter={() => searchUserData(fullname, nric)}
                     value={nric} 
                     allowClear
                 />
             </Col>
 
             <Col>
-                <Button loading={isLoading} onClick={searchUserData}>
+                <Button loading={isLoading} onClick={() => searchUserData(fullname, nric)}>
                     <SearchOutlined /> {" "}
                     Search
                 </Button>
